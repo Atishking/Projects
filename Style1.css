@@ -1,0 +1,213 @@
+
+
+h1 {
+    font-family: "Pacifico";
+    text-align: center;
+    font-size: 65px;
+
+}
+.Styling{
+    width: 500px;
+     height:250px;
+     position: relative; 
+     margin: auto;
+}
+
+body {
+   
+   background-image: url("board.jpg");
+   size: 100%;
+   background-repeat: no-repeat;
+
+}
+
+b{
+    font-size: 12px;
+}
+
+
+#theText {
+    margin-left: 55%;
+    height: 100%;
+    width: 100%;
+    margin-top: 3%;
+    resize: none;
+    background-image: url(form.jpg);
+    padding: 87px;
+    font-size: 21px;
+    font-family: 'Spicy Rice';
+    z-index: 0;
+    position: relative;
+    margin: auto;
+    top: 5%;
+}
+
+
+#Pinner {
+    width: 20%;
+    height: 45px;
+    z-index: 0.5;
+    position: absolute;
+    top: 13px;
+    left: 0;
+    /* float: right; */
+    margin-left: 79.7%;
+}
+
+
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+
+#Pinner:hover{
+    cursor: pointer;
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.9;
+}
+
+
+
+#theDate {
+    z-index: 0.5;
+    width: 21%;
+    height: 27px;
+    position: absolute;
+    /* margin-left: 53.5%; */
+    border-radius: 15%;
+    font-family: "Rancho";
+    margin-left: 23%;
+    top: 75%;
+    
+}
+
+#theHours{
+        margin-top: 5px;
+        position: absolute;
+        margin-left: 138px;
+        bottom: 4px;
+        border-radius: 15%;
+        font-family: "Rancho";
+        
+    }
+
+.note{
+    width: 200px;
+    height: 250px;
+    position: relative;
+    float: left;
+    background-image: url(notebg.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    top: 2%;
+    left: 2%;
+    padding: 20px;
+    top: 30px;
+    
+    
+}
+
+.note:hover .delete{
+    margin-left: 120px;
+    display: block;
+    
+}
+
+
+
+
+
+
+#eraser {
+    width: 15%;
+    z-index: 0.5;
+    transform: rotate(135deg);
+    opacity: 0.9;
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    top: 180px;
+    /* margin: auto; */
+
+}
+
+@keyframes spin { 100% {transform:rotate(495deg); } }
+
+#eraser:hover{
+    animation:spin 0.4s infinite linear;
+    cursor: pointer;
+}
+
+#plane{
+    width: 40%;
+    /* margin-top: 40%;
+    margin-left: 80%; */
+    opacity: 0.7;
+    position: absolute;
+    margin-left: 70%;
+    
+}
+
+.Shaker{
+
+    animation:spin 0.4s infinite linear;
+
+}
+
+.notetext{
+    font-size: 20px;
+    height: 140px;
+    font-family: "Courgette";
+    word-wrap: break-word;
+    overflow: auto;
+    margin-top: 20px;
+    width: 110px;
+}
+
+.notedate{
+    font-size: 70%;
+    font-family: "Courgette";
+    width: 60px;
+    display: inline-flex;
+}
+
+#firstDiv{
+    width: 90%;
+    overflow: auto;
+}
+
+
+.delete{
+    position: absolute;
+    margin-left: 120px;
+    display: none;
+    
+}
+
+.delete:hover{
+    cursor: pointer;
+}
+
+
+
+  @media only screen and (max-width: 600px) {
+    body {
+      width: 275%;
+    }
+   
+    
+}  

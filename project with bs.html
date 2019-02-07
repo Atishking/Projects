@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Style1.css">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Rancho|Courgette|Pacifico|Spicy+Rice|" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="col-sm-12">
+        <div class="container-fluid">
+            <div class="text-center header">
+                <h1>My Task Board</h1>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:center; position: relative;">
+                        <div class="Styling">
+                            <textarea cols="30" rows="10" id="theText" placeholder="Taking my dog for a walk..."></textarea>
+                            <img src="pinn.jpg" id="Pinner" onclick="PrintVal()">
+                            <input type="date" id="theDate">
+                            <input type="time" id="theHours">
+                            <img src="erase1.png" id="eraser" onclick="Clear()">
+                            <img src="plane.png" id="plane">
+                        </div>
+                    </div>
+                </div>
+                <div id="theNotes" class="Row"></div>
+            </div>
+        </div>
+
+
+
+        <script src="JavaScript.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script>
+            var newMessage;
+            var newDate;
+            var newHours;
+            var Notes = [];
+            var allTheNotes = document.getElementById("theNotes")
+            var n = 0;
+
+            window.onload = begin();
+
+            function begin() {
+
+                Checkstorage();
+            }
+
+            function PrintVal() {
+
+                var Now = new Date()
+
+                var newMessage = document.getElementById("theText").value;
+
+                var newDate = document.getElementById("theDate").value;
+
+                var newHours = document.getElementById("theHours").value;
+
+                var Current = Now.getTime();
+
+                if (newMessage != '') {
+
+                    
+                    var newNote = {
+
+                        theText: newMessage,
+                        theDate: newDate,
+                        theHours: newHours,
+                        id: Current
+
+                    };
+                    Notes.push(newNote);
+
+                        ;
+                    allTheNotes.innerHTML +=
+                        `
+             
+            <div class="note" id=${newNote.id} style="opacity:0;">
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-trash delete"></span>
+            <p class="notetext">${newNote.theText}</p>
+           <span class="notedate"><b>${newNote.theHours}</br>${newNote.theDate}</b></span>
+            </div>
+            </div>
+            
+             `
+           
+                    if (Current) {
+                        
+                        $("#" + Current).animate({opacity:1},1000)
+                    }
+
+                    ;
+
+                    Clear()
+
+                } else {
+
+                    alert("please enter Task and Date.")
+
+                }
+                save()
+
+                $(".delete").click(function () {
+
+                    deleteNote(this);
+
+                });
+
+                
+            }
+
+            function save() {
+
+                localStorage.setItem("Note.", JSON.stringify(Notes));
+            }
+
+
+            function Clear() {
+
+                document.getElementById("theText").value = ""
+
+                document.getElementById("theDate").value = DateTime
+
+            }
+
+            function Checkstorage() {
+
+                var getNotes = window.localStorage.getItem("Note.")
+
+                if (getNotes) {
+
+                    Notes = JSON.parse(localStorage.getItem("Note."))
+
+                    Displayfromstorage()
+                }
+
+            }
+
+            function Displayfromstorage() {
+
+                for (let i = 0; i < Notes.length; i++) {
+
+                    var newMessage = document.getElementById("theText").value;
+
+                    var newDate = document.getElementById("theDate").value;
+
+                    var newHours = document.getElementById("theHours").value;
+
+                    allTheNotes.innerHTML +=
+                        `
+            
+            <div class="note" id=${Notes[i].id}>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-trash delete"></span>
+            <p class="notetext">${Notes[i].theText}</p>
+           <span class="notedate"><b>${Notes[i].theHours}</br>${Notes[i].theDate}</b></span>
+            </div>
+            
+             `;
+
+
+                }
+
+                $(".delete").click(function () {
+
+                    deleteNote(this);
+
+                });
+
+            }
+
+            function deleteNote(elm) {
+                $(elm).parent().parent().hide(2000);
+
+                for (let i = 0; i < Notes.length; i++) {
+
+                    var notetodelete = $(elm).parent().parent().attr("id")
+
+                    if (notetodelete == Notes[i].id) {
+
+                        //found the obj to remove
+                        Notes.splice(i, 1);
+
+                        save();
+
+                    }
+                }
+
+            }
+
+            let DateTime = new Date().toISOString().substr(0, 10);
+
+            document.querySelector("#theDate").value = DateTime;
+
+
+            var dt = new Date();
+
+            var time = dt.getHours() + ":" + dt.getMinutes()
+
+            $("#theHours").val(time)
+
+        </script>
+</body>
+
+</html>
